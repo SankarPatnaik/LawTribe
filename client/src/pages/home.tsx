@@ -34,16 +34,17 @@ export default function Home() {
       );
 
   return (
-    <div className="min-h-screen bg-[var(--law-light)]">
+    <div className="min-h-screen">
       <Header />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="flex gap-6">
-          {/* Left Sidebar */}
-          <Sidebar currentUser={currentUser} />
+      <div className="flex">
+        {/* Left Sidebar */}
+        <Sidebar currentUser={currentUser} />
 
+        {/* Main Content Area */}
+        <div className="flex-1 flex max-w-none">
           {/* Main Content */}
-          <main className="flex-1 max-w-2xl">
+          <main className="flex-1 max-w-3xl px-8 py-8">
             <PostCreation currentUser={currentUser} />
             
             {/* Featured Posts */}
@@ -57,7 +58,7 @@ export default function Home() {
             />
 
             {/* Posts Feed */}
-            <div className="space-y-6">
+            <div className="space-y-8">
               {sortedPosts.map((post: PostWithAuthor) => (
                 <PostCard key={post.id} post={post} />
               ))}
@@ -65,7 +66,7 @@ export default function Home() {
           </main>
 
           {/* Right Sidebar */}
-          <aside className="w-80 flex-shrink-0 hidden xl:block">
+          <aside className="w-80 flex-shrink-0 hidden xl:block p-6">
             <InternshipHighlights />
             <UpcomingEvents />
             <SuggestedConnections />

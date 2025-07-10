@@ -40,25 +40,38 @@ export default function SuggestedConnections() {
   });
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center text-[var(--law-gray)]">
-          <UserPlus className="mr-2 h-5 w-5 text-[var(--law-blue)]" />
-          Suggested Connections
+    <Card className="card-shadow rounded-3xl border-0 overflow-hidden mb-8">
+      <CardHeader className="pb-4">
+        <CardTitle className="flex items-center text-[var(--law-gray)] text-lg">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center mr-3">
+            <UserPlus className="h-5 w-5 text-[var(--law-blue)]" />
+          </div>
+          People You May Know
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
           {suggestions.map((user: UserWithConnectionStatus) => (
-            <div key={user.id} className="profile-card p-3 bg-gray-50 rounded-lg">
-              <div className="flex items-center mb-2">
-                <Avatar className="w-10 h-10 mr-3">
-                  <AvatarImage src={user.profileImage || ""} />
-                  <AvatarFallback>{user.fullName.charAt(0)}</AvatarFallback>
-                </Avatar>
+            <div key={user.id} className="profile-card p-4 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-100">
+              <div className="flex items-center mb-3">
+                <div className="relative">
+                  <Avatar className="w-12 h-12 mr-4 ring-2 ring-white shadow-md">
+                    <AvatarImage src={user.profileImage || ""} />
+                    <AvatarFallback className="bg-gradient-to-br from-[var(--law-gradient-from)] to-[var(--law-gradient-to)] text-white font-semibold">
+                      {user.fullName.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[var(--law-success)] rounded-full border-2 border-white"></div>
+                </div>
                 <div className="flex-1">
-                  <h4 className="font-medium text-sm text-[var(--law-gray)]">{user.fullName}</h4>
-                  <p className="text-xs text-gray-600">{user.title} • {user.university}</p>
+                  <h4 className="font-semibold text-[var(--law-gray)] hover:text-[var(--law-blue)] cursor-pointer transition-colors">
+                    {user.fullName}
+                  </h4>
+                  <p className="text-sm text-[var(--law-gray-light)] flex items-center">
+                    {user.title}
+                    <span className="mx-2 w-1 h-1 bg-[var(--law-gray-light)] rounded-full"></span>
+                    {user.university}
+                  </p>
                 </div>
               </div>
               <Button
@@ -66,18 +79,18 @@ export default function SuggestedConnections() {
                 size="sm"
                 onClick={() => connectMutation.mutate(user.id)}
                 disabled={connectMutation.isPending}
-                className="w-full border-[var(--law-blue)] text-[var(--law-blue)] hover:bg-[var(--law-blue)] hover:text-white"
+                className="w-full gradient-bg text-white border-0 hover:scale-105 transition-transform duration-300 font-medium rounded-xl"
               >
-                {connectMutation.isPending ? "Connecting..." : "Connect"}
+                {connectMutation.isPending ? "Connecting..." : "✨ Connect"}
               </Button>
             </div>
           ))}
         </div>
         <Button
           variant="ghost"
-          className="w-full mt-4 text-[var(--law-blue)] hover:text-[var(--law-blue-dark)]"
+          className="w-full mt-6 text-[var(--law-blue)] hover:text-[var(--law-blue-dark)] hover:bg-blue-50 rounded-xl transition-all duration-300"
         >
-          View All Suggestions
+          Discover More Connections →
         </Button>
       </CardContent>
     </Card>

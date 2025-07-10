@@ -49,82 +49,115 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
   };
 
   return (
-    <Card className="mb-6 post-card">
-      <CardContent className="p-4">
+    <Card className="mb-8 post-card card-shadow rounded-3xl border-0 overflow-hidden">
+      <CardContent className="p-0">
         {featured && (
-          <div className="flex items-center mb-3">
-            <Pin className="h-4 w-4 text-[var(--law-blue)] mr-2" />
-            <Badge variant="secondary" className="bg-blue-50 text-[var(--law-blue)]">
-              Featured Post
-            </Badge>
+          <div className="gradient-bg px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Pin className="h-5 w-5 text-white mr-2" />
+                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 font-medium">
+                  ⭐ Featured Post
+                </Badge>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                <div className="w-2 h-2 bg-white/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              </div>
+            </div>
           </div>
         )}
         
-        <div className="flex items-start mb-4">
-          <Avatar className="w-12 h-12 mr-3">
-            <AvatarImage src={post.author.profileImage || ""} />
-            <AvatarFallback>{post.author.fullName.charAt(0)}</AvatarFallback>
-          </Avatar>
-          <div className="flex-1">
-            <h3 className="font-semibold text-[var(--law-gray)]">{post.author.fullName}</h3>
-            <p className="text-sm text-gray-600">{post.author.title} • {post.author.university}</p>
-            <p className="text-xs text-gray-500">{formatTimeAgo(new Date(post.createdAt!))}</p>
+        <div className="p-6">
+          <div className="flex items-start mb-6">
+            <div className="relative">
+              <Avatar className="w-14 h-14 mr-4 ring-3 ring-white shadow-lg">
+                <AvatarImage src={post.author.profileImage || ""} />
+                <AvatarFallback className="bg-gradient-to-br from-[var(--law-gradient-from)] to-[var(--law-gradient-to)] text-white text-lg font-semibold">
+                  {post.author.fullName.charAt(0)}
+                </AvatarFallback>
+              </Avatar>
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[var(--law-success)] rounded-full border-2 border-white"></div>
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-bold text-lg text-[var(--law-gray)] hover:text-[var(--law-blue)] cursor-pointer transition-colors">
+                    {post.author.fullName}
+                  </h3>
+                  <p className="text-sm text-[var(--law-gray-light)] flex items-center">
+                    {post.author.title} • {post.author.university}
+                    <span className="mx-2 w-1 h-1 bg-[var(--law-gray-light)] rounded-full"></span>
+                    {formatTimeAgo(new Date(post.createdAt!))}
+                  </p>
+                </div>
+                <Button variant="ghost" size="sm" className="text-[var(--law-gray-light)] hover:text-[var(--law-blue)] rounded-full">
+                  •••
+                </Button>
+              </div>
+            </div>
           </div>
-        </div>
 
-        {post.title && (
-          <h4 className="text-lg font-semibold text-[var(--law-gray)] mb-3">
-            {post.title}
-          </h4>
-        )}
-
-        <p className="text-gray-700 mb-4">{post.content}</p>
-
-        {post.image && (
-          <img 
-            src={post.image} 
-            alt="Post content" 
-            className="w-full h-48 object-cover rounded-lg mb-4"
-          />
-        )}
-
-        <div className="flex items-center justify-between pt-3 border-t">
-          <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => likePostMutation.mutate()}
-              disabled={likePostMutation.isPending}
-              className="flex items-center text-gray-600 hover:text-[var(--law-blue)]"
-            >
-              <Heart className="mr-2 h-4 w-4" />
-              {post.likes || 0}
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex items-center text-gray-600 hover:text-[var(--law-blue)]"
-            >
-              <MessageCircle className="mr-2 h-4 w-4" />
-              {post.comments || 0}
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex items-center text-gray-600 hover:text-[var(--law-blue)]"
-            >
-              <Share className="mr-2 h-4 w-4" />
-              Share
-            </Button>
-          </div>
-          {featured && (
-            <Button
-              variant="ghost"
-              className="text-[var(--law-blue)] hover:text-[var(--law-blue-dark)] font-medium"
-            >
-              Read more
-            </Button>
+          {post.title && (
+            <h4 className="text-xl font-bold text-[var(--law-gray)] mb-4 leading-tight">
+              {post.title}
+            </h4>
           )}
+
+          <p className="text-[var(--law-gray)] mb-6 leading-relaxed text-base">
+            {post.content}
+          </p>
+
+          {post.image && (
+            <div className="relative mb-6 rounded-2xl overflow-hidden">
+              <img 
+                src={post.image} 
+                alt="Post content" 
+                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+            <div className="flex items-center space-x-6">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => likePostMutation.mutate()}
+                disabled={likePostMutation.isPending}
+                className="flex items-center text-[var(--law-gray-light)] hover:text-red-500 transition-colors rounded-full px-4 py-2"
+              >
+                <Heart className="mr-2 h-5 w-5" />
+                <span className="font-medium">{post.likes || 0}</span>
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="flex items-center text-[var(--law-gray-light)] hover:text-[var(--law-blue)] transition-colors rounded-full px-4 py-2"
+              >
+                <MessageCircle className="mr-2 h-5 w-5" />
+                <span className="font-medium">{post.comments || 0}</span>
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="flex items-center text-[var(--law-gray-light)] hover:text-[var(--law-blue)] transition-colors rounded-full px-4 py-2"
+              >
+                <Share className="mr-2 h-5 w-5" />
+                <span className="font-medium">Share</span>
+              </Button>
+            </div>
+            {featured && (
+              <Button
+                variant="outline"
+                className="gradient-bg text-white border-0 hover:scale-105 transition-transform font-medium rounded-full px-6"
+              >
+                Read more →
+              </Button>
+            )}
+          </div>
         </div>
       </CardContent>
     </Card>

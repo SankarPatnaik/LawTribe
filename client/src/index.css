@@ -4,31 +4,39 @@
 
 :root {
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(20, 14.3%, 4.1%);
-  --muted: hsl(60, 4.8%, 95.9%);
-  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --foreground: hsl(224, 71.4%, 4.1%);
+  --muted: hsl(220, 14.3%, 95.9%);
+  --muted-foreground: hsl(220, 8.9%, 46.1%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --popover-foreground: hsl(224, 71.4%, 4.1%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(20, 14.3%, 4.1%);
-  --border: hsl(20, 5.9%, 90%);
-  --input: hsl(20, 5.9%, 90%);
-  --primary: hsl(207, 90%, 54%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(60, 4.8%, 95.9%);
-  --secondary-foreground: hsl(24, 9.8%, 10%);
-  --accent: hsl(60, 4.8%, 95.9%);
-  --accent-foreground: hsl(24, 9.8%, 10%);
+  --card-foreground: hsl(224, 71.4%, 4.1%);
+  --border: hsl(220, 13%, 91%);
+  --input: hsl(220, 13%, 91%);
+  --primary: hsl(221.2, 83.2%, 53.3%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(220, 14.3%, 95.9%);
+  --secondary-foreground: hsl(220.9, 39.3%, 11%);
+  --accent: hsl(220, 14.3%, 95.9%);
+  --accent-foreground: hsl(220.9, 39.3%, 11%);
   --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(60, 9.1%, 97.8%);
-  --ring: hsl(20, 14.3%, 4.1%);
-  --radius: 0.5rem;
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(224, 71.4%, 4.1%);
+  --radius: 0.75rem;
 
-  /* Law Connect specific colors */
-  --law-blue: hsl(207, 90%, 54%);
-  --law-blue-dark: hsl(207, 85%, 45%);
-  --law-gray: hsl(220, 13%, 30%);
-  --law-light: hsl(220, 13%, 96%);
+  /* Law Connect modern colors */
+  --law-gradient-from: hsl(221.2, 83.2%, 53.3%);
+  --law-gradient-to: hsl(262.1, 83.3%, 57.8%);
+  --law-blue: hsl(221.2, 83.2%, 53.3%);
+  --law-blue-dark: hsl(221.2, 83.2%, 43.3%);
+  --law-purple: hsl(262.1, 83.3%, 57.8%);
+  --law-gray: hsl(220.9, 39.3%, 11%);
+  --law-gray-light: hsl(220, 8.9%, 46.1%);
+  --law-light: hsl(220, 14.3%, 95.9%);
+  --law-surface: hsl(0, 0%, 99%);
+  --law-accent: hsl(47.9, 95.8%, 53.1%);
+  --law-success: hsl(142.1, 76.2%, 36.3%);
+  --law-warning: hsl(32.6, 94.6%, 43.7%);
 }
 
 .dark {
@@ -62,34 +70,77 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: var(--law-light);
+    background: linear-gradient(135deg, var(--law-light) 0%, var(--law-surface) 100%);
+    min-height: 100vh;
   }
 }
 
 @layer utilities {
   .post-card {
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
   
   .post-card:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.04);
+    background: rgba(255, 255, 255, 0.95);
   }
   
   .nav-link {
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
   }
   
   .nav-link:hover {
-    color: var(--law-blue);
+    background: linear-gradient(135deg, var(--law-gradient-from) 0%, var(--law-gradient-to) 100%);
+    color: white;
+    transform: translateX(4px);
   }
   
   .profile-card {
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
   }
   
   .profile-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.1), 0 12px 24px rgba(0, 0, 0, 0.06);
+    background: rgba(255, 255, 255, 0.95);
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(135deg, var(--law-gradient-from) 0%, var(--law-gradient-to) 100%);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .card-shadow {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+  
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .pulse-dot {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .8; }
   }
 }
