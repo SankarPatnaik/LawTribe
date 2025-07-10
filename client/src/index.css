@@ -24,22 +24,22 @@
   --ring: hsl(224, 71.4%, 4.1%);
   --radius: 0.75rem;
 
-  /* Law Connect community colors */
-  --law-gradient-from: hsl(280, 100%, 70%);
-  --law-gradient-to: hsl(220, 100%, 65%);
-  --law-blue: hsl(220, 100%, 65%);
-  --law-blue-dark: hsl(220, 100%, 55%);
-  --law-purple: hsl(280, 100%, 70%);
-  --law-pink: hsl(320, 100%, 75%);
-  --law-cyan: hsl(180, 100%, 65%);
-  --law-orange: hsl(30, 100%, 65%);
-  --law-gray: hsl(220, 20%, 10%);
-  --law-gray-light: hsl(220, 10%, 50%);
+  /* Law Connect professional colors */
+  --law-gradient-from: hsl(220, 85%, 25%);
+  --law-gradient-to: hsl(210, 90%, 35%);
+  --law-blue: hsl(220, 85%, 25%);
+  --law-blue-dark: hsl(220, 90%, 20%);
+  --law-navy: hsl(210, 90%, 35%);
+  --law-gold: hsl(45, 90%, 55%);
+  --law-gold-light: hsl(45, 80%, 70%);
+  --law-silver: hsl(210, 15%, 65%);
+  --law-gray: hsl(220, 20%, 15%);
+  --law-gray-light: hsl(220, 15%, 55%);
   --law-light: hsl(220, 30%, 98%);
   --law-surface: hsl(0, 0%, 100%);
-  --law-accent: hsl(45, 100%, 60%);
-  --law-success: hsl(150, 80%, 50%);
-  --law-warning: hsl(30, 100%, 65%);
+  --law-accent: hsl(45, 90%, 55%);
+  --law-success: hsl(150, 60%, 45%);
+  --law-warning: hsl(30, 80%, 55%);
 }
 
 .dark {

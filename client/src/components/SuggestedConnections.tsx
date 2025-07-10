@@ -43,8 +43,8 @@ export default function SuggestedConnections() {
     <Card className="card-shadow rounded-3xl border-0 overflow-hidden mb-8">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center text-[var(--law-gray)] text-lg">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center mr-3">
-            <UserPlus className="h-5 w-5 text-[var(--law-blue)]" />
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--law-silver)]/20 to-[var(--law-gray-light)]/20 flex items-center justify-center mr-3">
+            <UserPlus className="h-5 w-5 text-[var(--law-silver)]" />
           </div>
           People You May Know
         </CardTitle>
@@ -57,11 +57,11 @@ export default function SuggestedConnections() {
                 <div className="relative">
                   <Avatar className="w-12 h-12 mr-4 ring-2 ring-white shadow-md">
                     <AvatarImage src={user.profileImage || ""} />
-                    <AvatarFallback className="bg-gradient-to-br from-[var(--law-gradient-from)] to-[var(--law-gradient-to)] text-white font-semibold">
+                    <AvatarFallback className="bg-gradient-to-br from-[var(--law-blue)] to-[var(--law-navy)] text-white font-semibold">
                       {user.fullName.charAt(0)}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[var(--law-success)] rounded-full border-2 border-white"></div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[var(--law-gold)] rounded-full border-2 border-white"></div>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-semibold text-[var(--law-gray)] hover:text-[var(--law-blue)] cursor-pointer transition-colors">
@@ -79,16 +79,16 @@ export default function SuggestedConnections() {
                 size="sm"
                 onClick={() => connectMutation.mutate(user.id)}
                 disabled={connectMutation.isPending}
-                className="w-full gradient-bg text-white border-0 hover:scale-105 transition-transform duration-300 font-medium rounded-xl"
+                className="w-full bg-gradient-to-r from-[var(--law-blue)] to-[var(--law-navy)] text-white border-0 hover:scale-105 transition-transform duration-300 font-medium rounded-xl"
               >
-                {connectMutation.isPending ? "Connecting..." : "✨ Connect"}
+                {connectMutation.isPending ? "Connecting..." : "Connect"}
               </Button>
             </div>
           ))}
         </div>
         <Button
           variant="ghost"
-          className="w-full mt-6 text-[var(--law-blue)] hover:text-[var(--law-blue-dark)] hover:bg-blue-50 rounded-xl transition-all duration-300"
+          className="w-full mt-6 text-[var(--law-blue)] hover:text-[var(--law-blue-dark)] hover:bg-[var(--law-blue)]/10 rounded-xl transition-all duration-300"
         >
           Discover More Connections →
         </Button>
