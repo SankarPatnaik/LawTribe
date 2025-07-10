@@ -8,59 +8,62 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <header className="glass-effect shadow-lg border-b border-white/20 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+    <header className="bg-white/80 backdrop-blur-lg shadow-xl border-b border-gray-200/50 sticky top-0 z-50">
+      <div className="max-w-full px-6">
+        <div className="flex justify-between items-center h-18">
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center group cursor-pointer">
               <div className="relative">
-                <Scale className="h-10 w-10 text-[var(--law-blue)] mr-3 group-hover:scale-110 transition-transform duration-300" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[var(--law-accent)] rounded-full pulse-dot"></div>
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-[var(--law-purple)] to-[var(--law-blue)] flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Scale className="h-7 w-7 text-white" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-[var(--law-accent)] rounded-full animate-bounce"></div>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-bold bg-gradient-to-r from-[var(--law-gradient-from)] to-[var(--law-gradient-to)] bg-clip-text text-transparent">
+                <span className="text-2xl font-black bg-gradient-to-r from-[var(--law-purple)] to-[var(--law-blue)] bg-clip-text text-transparent">
                   LawConnect
                 </span>
-                <span className="text-xs text-[var(--law-gray-light)] -mt-1">Legal Community</span>
+                <span className="text-xs font-medium text-[var(--law-gray-light)] -mt-1 tracking-wide">Creative Legal Community</span>
               </div>
             </div>
           </div>
           
           {/* Search Bar */}
-          <div className="flex-1 max-w-2xl mx-8">
+          <div className="flex-1 max-w-xl mx-8">
             <div className="relative group">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[var(--law-gray-light)] h-5 w-5 group-focus-within:text-[var(--law-blue)] transition-colors" />
+              <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-[var(--law-gray-light)] h-5 w-5 group-focus-within:text-[var(--law-purple)] transition-colors" />
               <Input
                 type="text"
-                placeholder="Search for lawyers, cases, legal topics, or connect with peers..."
+                placeholder="Search portfolios, cases, legal insights..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-4 py-3 w-full text-base rounded-2xl border-0 bg-white/50 backdrop-blur-sm focus:bg-white/80 focus:ring-2 focus:ring-[var(--law-blue)]/30 transition-all duration-300 placeholder:text-[var(--law-gray-light)]"
+                className="pl-14 pr-12 py-4 w-full text-base rounded-full border-2 border-gray-200 bg-gray-50/80 focus:bg-white focus:border-[var(--law-purple)] transition-all duration-300 placeholder:text-[var(--law-gray-light)] shadow-inner"
               />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <kbd className="px-2 py-1 text-xs bg-[var(--law-light)] rounded-md text-[var(--law-gray-light)]">⌘K</kbd>
+              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+                <span className="text-xs text-[var(--law-gray-light)]">Press</span>
+                <kbd className="px-2 py-1 text-xs bg-white border border-gray-300 rounded-md text-[var(--law-gray-light)] shadow-sm">⌘K</kbd>
               </div>
             </div>
           </div>
           
           {/* Profile Menu */}
-          <div className="flex items-center space-x-3">
-            <Button variant="ghost" size="icon" className="relative hover:bg-white/20 rounded-full transition-all duration-300">
+          <div className="flex items-center space-x-4">
+            <Button variant="ghost" size="icon" className="relative w-12 h-12 rounded-full bg-gray-100 hover:bg-[var(--law-purple)]/10 transition-all duration-300">
               <Bell className="h-5 w-5 text-[var(--law-gray)]" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-[var(--law-accent)] rounded-full animate-pulse"></div>
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-[var(--law-pink)] to-[var(--law-purple)] rounded-full text-white text-xs flex items-center justify-center font-bold">3</div>
             </Button>
-            <Button variant="ghost" size="icon" className="hover:bg-white/20 rounded-full transition-all duration-300">
+            <Button variant="ghost" size="icon" className="w-12 h-12 rounded-full bg-gray-100 hover:bg-[var(--law-blue)]/10 transition-all duration-300">
               <MessageCircle className="h-5 w-5 text-[var(--law-gray)]" />
             </Button>
-            <div className="flex items-center space-x-3 ml-4">
-              <Avatar className="h-10 w-10 cursor-pointer ring-2 ring-white/20 hover:ring-[var(--law-blue)]/50 transition-all duration-300">
+            <div className="flex items-center space-x-3 ml-4 bg-gray-50 rounded-full p-2 hover:shadow-lg transition-all duration-300">
+              <Avatar className="h-12 w-12 cursor-pointer ring-3 ring-white shadow-lg">
                 <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150" />
-                <AvatarFallback className="bg-gradient-to-br from-[var(--law-gradient-from)] to-[var(--law-gradient-to)] text-white font-semibold">AJ</AvatarFallback>
+                <AvatarFallback className="bg-gradient-to-br from-[var(--law-purple)] to-[var(--law-blue)] text-white font-bold">AJ</AvatarFallback>
               </Avatar>
-              <div className="hidden md:block">
-                <p className="text-sm font-medium text-[var(--law-gray)]">Alex Johnson</p>
-                <p className="text-xs text-[var(--law-gray-light)]">3rd Year Law Student</p>
+              <div className="hidden md:block pr-2">
+                <p className="text-sm font-bold text-[var(--law-gray)]">Alex Johnson</p>
+                <p className="text-xs text-[var(--law-gray-light)] font-medium">Law Student</p>
               </div>
             </div>
           </div>

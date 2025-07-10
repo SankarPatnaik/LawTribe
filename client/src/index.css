@@ -24,19 +24,22 @@
   --ring: hsl(224, 71.4%, 4.1%);
   --radius: 0.75rem;
 
-  /* Law Connect modern colors */
-  --law-gradient-from: hsl(221.2, 83.2%, 53.3%);
-  --law-gradient-to: hsl(262.1, 83.3%, 57.8%);
-  --law-blue: hsl(221.2, 83.2%, 53.3%);
-  --law-blue-dark: hsl(221.2, 83.2%, 43.3%);
-  --law-purple: hsl(262.1, 83.3%, 57.8%);
-  --law-gray: hsl(220.9, 39.3%, 11%);
-  --law-gray-light: hsl(220, 8.9%, 46.1%);
-  --law-light: hsl(220, 14.3%, 95.9%);
-  --law-surface: hsl(0, 0%, 99%);
-  --law-accent: hsl(47.9, 95.8%, 53.1%);
-  --law-success: hsl(142.1, 76.2%, 36.3%);
-  --law-warning: hsl(32.6, 94.6%, 43.7%);
+  /* Law Connect community colors */
+  --law-gradient-from: hsl(280, 100%, 70%);
+  --law-gradient-to: hsl(220, 100%, 65%);
+  --law-blue: hsl(220, 100%, 65%);
+  --law-blue-dark: hsl(220, 100%, 55%);
+  --law-purple: hsl(280, 100%, 70%);
+  --law-pink: hsl(320, 100%, 75%);
+  --law-cyan: hsl(180, 100%, 65%);
+  --law-orange: hsl(30, 100%, 65%);
+  --law-gray: hsl(220, 20%, 10%);
+  --law-gray-light: hsl(220, 10%, 50%);
+  --law-light: hsl(220, 30%, 98%);
+  --law-surface: hsl(0, 0%, 100%);
+  --law-accent: hsl(45, 100%, 60%);
+  --law-success: hsl(150, 80%, 50%);
+  --law-warning: hsl(30, 100%, 65%);
 }
 
 .dark {
@@ -70,7 +73,8 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
     font-family: 'Inter', system-ui, sans-serif;
-    background: linear-gradient(135deg, var(--law-light) 0%, var(--law-surface) 100%);
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 10%, #f1f5f9 100%);
+    background-attachment: fixed;
     min-height: 100vh;
   }
 }

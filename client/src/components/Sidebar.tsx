@@ -23,107 +23,125 @@ export default function Sidebar({ currentUser }: SidebarProps) {
   ];
 
   return (
-    <aside className="w-80 flex-shrink-0 hidden lg:block glass-effect border-r border-white/20 h-screen sticky top-0 p-6 overflow-y-auto">
-      <div className="space-y-8">
-        {/* Profile Card */}
-        <Card className="profile-card card-shadow rounded-3xl border-0 overflow-hidden">
-          <CardContent className="p-6">
-            <div className="text-center">
-              <div className="relative inline-block">
-                <Avatar className="w-20 h-20 mx-auto mb-4 ring-4 ring-white shadow-xl">
-                  <AvatarImage src={currentUser.profileImage || ""} />
-                  <AvatarFallback className="bg-gradient-to-br from-[var(--law-gradient-from)] to-[var(--law-gradient-to)] text-white text-2xl font-bold">
-                    {currentUser.fullName.charAt(0)}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[var(--law-success)] rounded-full border-3 border-white"></div>
-              </div>
-              <h3 className="font-bold text-xl text-[var(--law-gray)] mb-1">{currentUser.fullName}</h3>
-              <p className="text-sm text-[var(--law-gray-light)] mb-1">{currentUser.title}</p>
-              <p className="text-xs text-[var(--law-blue)] font-medium">{currentUser.university}</p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-gray-100">
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="text-center p-3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
-                  <div className="text-2xl font-bold text-[var(--law-blue)]">{currentUser.profileViews || 24}</div>
-                  <div className="text-[var(--law-gray-light)]">Profile Views</div>
+    <aside className="w-72 flex-shrink-0 hidden lg:block bg-white/40 backdrop-blur-sm border-r border-gray-200/30 h-screen sticky top-0 p-4 overflow-y-auto">
+      <div className="space-y-6">
+        {/* Portfolio Card */}
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-[var(--law-purple)] to-[var(--law-blue)] rounded-3xl transform rotate-1"></div>
+          <Card className="relative bg-white rounded-3xl border-0 shadow-2xl overflow-hidden">
+            <CardContent className="p-6">
+              <div className="text-center">
+                <div className="relative inline-block mb-4">
+                  <Avatar className="w-20 h-20 mx-auto ring-4 ring-white shadow-xl">
+                    <AvatarImage src={currentUser.profileImage || ""} />
+                    <AvatarFallback className="bg-gradient-to-br from-[var(--law-purple)] to-[var(--law-blue)] text-white text-2xl font-bold">
+                      {currentUser.fullName.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-[var(--law-success)] to-[var(--law-cyan)] rounded-full border-4 border-white flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">✓</span>
+                  </div>
                 </div>
-                <div className="text-center p-3 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl">
-                  <div className="text-2xl font-bold text-[var(--law-purple)]">{currentUser.connections || 156}</div>
-                  <div className="text-[var(--law-gray-light)]">Connections</div>
+                <h3 className="font-black text-lg text-[var(--law-gray)] mb-1">{currentUser.fullName}</h3>
+                <p className="text-sm font-semibold text-[var(--law-gray-light)] mb-1">{currentUser.title}</p>
+                <p className="text-xs font-medium text-[var(--law-purple)]">{currentUser.university}</p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-gray-100">
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="text-center p-4 bg-gradient-to-br from-[var(--law-blue)] to-[var(--law-cyan)] rounded-2xl text-white shadow-lg">
+                    <div className="text-2xl font-black">{currentUser.profileViews || 24}</div>
+                    <div className="text-xs font-medium opacity-90">Portfolio Views</div>
+                  </div>
+                  <div className="text-center p-4 bg-gradient-to-br from-[var(--law-purple)] to-[var(--law-pink)] rounded-2xl text-white shadow-lg">
+                    <div className="text-2xl font-black">{currentUser.connections || 156}</div>
+                    <div className="text-xs font-medium opacity-90">Following</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
         
         {/* Navigation Menu */}
-        <Card className="card-shadow rounded-3xl border-0 overflow-hidden">
-          <CardContent className="p-6">
-            <h4 className="font-bold text-[var(--law-gray)] mb-4">Navigation</h4>
-            <nav>
-              <ul className="space-y-3">
-                {navItems.map((item) => (
-                  <li key={item.label}>
-                    <Button
-                      variant="ghost"
-                      className={cn(
-                        "w-full justify-start nav-link px-4 py-3 rounded-2xl transition-all duration-300 text-[var(--law-gray)]",
-                        item.active && "bg-gradient-to-r from-[var(--law-gradient-from)] to-[var(--law-gradient-to)] text-white shadow-lg"
-                      )}
-                    >
-                      <item.icon className="mr-3 h-5 w-5" />
-                      <span className="font-medium">{item.label}</span>
-                    </Button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </CardContent>
-        </Card>
+        <div className="space-y-2">
+          {navItems.map((item, index) => (
+            <Button
+              key={item.label}
+              variant="ghost"
+              className={cn(
+                "w-full justify-start px-4 py-4 rounded-2xl transition-all duration-300 font-semibold text-left group",
+                item.active 
+                  ? "bg-gradient-to-r from-[var(--law-purple)] to-[var(--law-blue)] text-white shadow-xl transform scale-105" 
+                  : "text-[var(--law-gray)] hover:bg-white hover:shadow-lg hover:scale-105"
+              )}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className={cn(
+                "w-10 h-10 rounded-xl flex items-center justify-center mr-3 transition-all",
+                item.active 
+                  ? "bg-white/20" 
+                  : "bg-gray-100 group-hover:bg-gradient-to-r group-hover:from-[var(--law-purple)] group-hover:to-[var(--law-blue)]"
+              )}>
+                <item.icon className={cn("h-5 w-5", item.active ? "text-white" : "text-[var(--law-gray)] group-hover:text-white")} />
+              </div>
+              <span>{item.label}</span>
+            </Button>
+          ))}
+        </div>
 
-        {/* Trending Topics */}
-        <Card className="card-shadow rounded-3xl border-0 overflow-hidden">
+        {/* Trending Tags */}
+        <Card className="bg-white rounded-3xl border-0 shadow-xl overflow-hidden">
           <CardContent className="p-6">
-            <h4 className="font-bold text-[var(--law-gray)] mb-4">Trending Topics</h4>
-            <div className="space-y-3">
-              <a href="#" className="flex items-center px-4 py-3 text-[var(--law-gray-light)] hover:text-[var(--law-blue)] hover:bg-blue-50 rounded-xl transition-all duration-300 group">
-                <Hash className="mr-3 h-4 w-4 group-hover:scale-110 transition-transform" />
-                <span className="font-medium">Constitutional Law</span>
-                <span className="ml-auto text-xs bg-[var(--law-blue)] text-white px-2 py-1 rounded-full">Hot</span>
-              </a>
-              <a href="#" className="flex items-center px-4 py-3 text-[var(--law-gray-light)] hover:text-[var(--law-purple)] hover:bg-purple-50 rounded-xl transition-all duration-300 group">
-                <Hash className="mr-3 h-4 w-4 group-hover:scale-110 transition-transform" />
-                <span className="font-medium">Criminal Law</span>
-                <span className="ml-auto text-xs bg-[var(--law-purple)] text-white px-2 py-1 rounded-full">New</span>
-              </a>
-              <a href="#" className="flex items-center px-4 py-3 text-[var(--law-gray-light)] hover:text-[var(--law-warning)] hover:bg-orange-50 rounded-xl transition-all duration-300 group">
-                <Hash className="mr-3 h-4 w-4 group-hover:scale-110 transition-transform" />
-                <span className="font-medium">Law School Tips</span>
-              </a>
+            <h4 className="font-black text-[var(--law-gray)] mb-4 flex items-center">
+              <Hash className="mr-2 h-5 w-5 text-[var(--law-purple)]" />
+              Trending Tags
+            </h4>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-2 bg-gradient-to-r from-[var(--law-blue)] to-[var(--law-cyan)] text-white text-xs font-bold rounded-full shadow-lg hover:scale-110 transition-transform cursor-pointer">
+                #ConstitutionalLaw 🔥
+              </span>
+              <span className="px-3 py-2 bg-gradient-to-r from-[var(--law-purple)] to-[var(--law-pink)] text-white text-xs font-bold rounded-full shadow-lg hover:scale-110 transition-transform cursor-pointer">
+                #CriminalLaw ⚡
+              </span>
+              <span className="px-3 py-2 bg-gradient-to-r from-[var(--law-orange)] to-[var(--law-accent)] text-white text-xs font-bold rounded-full shadow-lg hover:scale-110 transition-transform cursor-pointer">
+                #LawSchoolTips 💡
+              </span>
+              <span className="px-3 py-2 bg-gradient-to-r from-[var(--law-cyan)] to-[var(--law-blue)] text-white text-xs font-bold rounded-full shadow-lg hover:scale-110 transition-transform cursor-pointer">
+                #MootCourt 🏛️
+              </span>
+              <span className="px-3 py-2 bg-gradient-to-r from-[var(--law-pink)] to-[var(--law-purple)] text-white text-xs font-bold rounded-full shadow-lg hover:scale-110 transition-transform cursor-pointer">
+                #LegalTech 🚀
+              </span>
             </div>
           </CardContent>
         </Card>
 
-        {/* Study Groups */}
-        <Card className="card-shadow rounded-3xl border-0 overflow-hidden">
+        {/* Creative Communities */}
+        <Card className="bg-white rounded-3xl border-0 shadow-xl overflow-hidden">
           <CardContent className="p-6">
-            <h4 className="font-bold text-[var(--law-gray)] mb-4">Study Groups</h4>
+            <h4 className="font-black text-[var(--law-gray)] mb-4 flex items-center">
+              <Users className="mr-2 h-5 w-5 text-[var(--law-orange)]" />
+              Creative Communities
+            </h4>
             <div className="space-y-3">
-              <a href="#" className="flex items-center px-4 py-3 text-[var(--law-gray-light)] hover:text-[var(--law-blue)] hover:bg-blue-50 rounded-xl transition-all duration-300 group">
-                <Users className="mr-3 h-4 w-4 group-hover:scale-110 transition-transform" />
-                <div className="flex-1">
-                  <div className="font-medium">Moot Court Prep</div>
-                  <div className="text-xs text-[var(--law-gray-light)]">12 members</div>
+              <div className="flex items-center p-3 bg-gradient-to-r from-[var(--law-blue)]/10 to-[var(--law-cyan)]/10 rounded-2xl hover:shadow-lg transition-all duration-300 cursor-pointer group">
+                <div className="w-12 h-12 bg-gradient-to-r from-[var(--law-blue)] to-[var(--law-cyan)] rounded-2xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                  <span className="text-white font-bold text-sm">MC</span>
                 </div>
-              </a>
-              <a href="#" className="flex items-center px-4 py-3 text-[var(--law-gray-light)] hover:text-[var(--law-purple)] hover:bg-purple-50 rounded-xl transition-all duration-300 group">
-                <Users className="mr-3 h-4 w-4 group-hover:scale-110 transition-transform" />
                 <div className="flex-1">
-                  <div className="font-medium">Bar Exam Study</div>
-                  <div className="text-xs text-[var(--law-gray-light)]">8 members</div>
+                  <div className="font-bold text-[var(--law-gray)] text-sm">Moot Court Designers</div>
+                  <div className="text-xs text-[var(--law-gray-light)]">127 creative minds</div>
                 </div>
-              </a>
+              </div>
+              <div className="flex items-center p-3 bg-gradient-to-r from-[var(--law-purple)]/10 to-[var(--law-pink)]/10 rounded-2xl hover:shadow-lg transition-all duration-300 cursor-pointer group">
+                <div className="w-12 h-12 bg-gradient-to-r from-[var(--law-purple)] to-[var(--law-pink)] rounded-2xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                  <span className="text-white font-bold text-sm">LT</span>
+                </div>
+                <div className="flex-1">
+                  <div className="font-bold text-[var(--law-gray)] text-sm">Legal Tech Innovators</div>
+                  <div className="text-xs text-[var(--law-gray-light)]">89 innovators</div>
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>

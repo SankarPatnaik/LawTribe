@@ -48,56 +48,59 @@ export default function PostCreation({ currentUser }: PostCreationProps) {
   if (!currentUser) return null;
 
   return (
-    <Card className="mb-8 post-card card-shadow rounded-3xl border-0 overflow-hidden">
-      <CardContent className="p-6">
-        <div className="flex items-center mb-6">
-          <Avatar className="w-14 h-14 mr-4 ring-3 ring-white shadow-lg floating-animation">
-            <AvatarImage src={currentUser.profileImage || ""} />
-            <AvatarFallback className="bg-gradient-to-br from-[var(--law-gradient-from)] to-[var(--law-gradient-to)] text-white text-lg font-semibold">
-              {currentUser.fullName.charAt(0)}
-            </AvatarFallback>
-          </Avatar>
-          <Button
-            variant="ghost"
-            onClick={handlePostClick}
-            className="flex-1 justify-start px-6 py-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl text-[var(--law-gray-light)] hover:from-white hover:to-gray-50 hover:text-[var(--law-gray)] transition-all duration-300 text-base"
-          >
-            💭 What's on your legal mind today?
-          </Button>
-        </div>
-        <div className="grid grid-cols-3 gap-3">
-          <Button
-            variant="ghost"
-            className="flex flex-col items-center py-4 px-3 text-[var(--law-gray-light)] hover:text-[var(--law-blue)] hover:bg-blue-50 transition-all duration-300 rounded-xl group"
-            onClick={handlePostClick}
-          >
-            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-              <Edit3 className="h-5 w-5 text-[var(--law-blue)]" />
-            </div>
-            <span className="text-sm font-medium">Start a post</span>
-          </Button>
-          <Button
-            variant="ghost"
-            className="flex flex-col items-center py-4 px-3 text-[var(--law-gray-light)] hover:text-[var(--law-purple)] hover:bg-purple-50 transition-all duration-300 rounded-xl group"
-            onClick={() => createPostMutation.mutate({ content: "I have a question about constitutional law interpretation. Can anyone help explain the recent developments in Article 370 cases?", type: "question" })}
-          >
-            <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-              <HelpCircle className="h-5 w-5 text-[var(--law-purple)]" />
-            </div>
-            <span className="text-sm font-medium">Ask Question</span>
-          </Button>
-          <Button
-            variant="ghost"
-            className="flex flex-col items-center py-4 px-3 text-[var(--law-gray-light)] hover:text-[var(--law-warning)] hover:bg-orange-50 transition-all duration-300 rounded-xl group"
-            onClick={() => createPostMutation.mutate({ content: "Case Analysis: Recent Supreme Court ruling on privacy rights. Key takeaways and implications for future litigation strategies.", type: "case_note" })}
-          >
-            <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-              <FileText className="h-5 w-5 text-[var(--law-warning)]" />
-            </div>
-            <span className="text-sm font-medium">Case Note</span>
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+    <div className="mb-10 relative">
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--law-purple)] via-[var(--law-pink)] to-[var(--law-cyan)] rounded-3xl blur opacity-30"></div>
+      <Card className="relative bg-white rounded-3xl border-0 shadow-2xl overflow-hidden">
+        <CardContent className="p-8">
+          <div className="flex items-center mb-8">
+            <Avatar className="w-16 h-16 mr-6 ring-4 ring-white shadow-xl">
+              <AvatarImage src={currentUser.profileImage || ""} />
+              <AvatarFallback className="bg-gradient-to-br from-[var(--law-purple)] to-[var(--law-blue)] text-white text-xl font-black">
+                {currentUser.fullName.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+            <Button
+              variant="ghost"
+              onClick={handlePostClick}
+              className="flex-1 justify-start px-8 py-6 bg-gradient-to-r from-gray-50 to-gray-100 rounded-3xl text-[var(--law-gray-light)] hover:from-[var(--law-purple)]/5 hover:to-[var(--law-blue)]/5 hover:text-[var(--law-gray)] transition-all duration-500 text-lg font-medium hover:scale-[1.02] hover:shadow-lg"
+            >
+              ✨ Share your creative work or legal insight...
+            </Button>
+          </div>
+          <div className="grid grid-cols-3 gap-4">
+            <Button
+              variant="ghost"
+              className="flex flex-col items-center py-6 px-4 text-[var(--law-gray-light)] hover:text-white transition-all duration-300 rounded-2xl group bg-gradient-to-br from-blue-50 to-cyan-50 hover:from-[var(--law-blue)] hover:to-[var(--law-cyan)] hover:scale-110 hover:shadow-xl"
+              onClick={handlePostClick}
+            >
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-[var(--law-blue)] to-[var(--law-cyan)] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-lg">
+                <Edit3 className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-sm font-bold">🎨 Portfolio Post</span>
+            </Button>
+            <Button
+              variant="ghost"
+              className="flex flex-col items-center py-6 px-4 text-[var(--law-gray-light)] hover:text-white transition-all duration-300 rounded-2xl group bg-gradient-to-br from-purple-50 to-pink-50 hover:from-[var(--law-purple)] hover:to-[var(--law-pink)] hover:scale-110 hover:shadow-xl"
+              onClick={() => createPostMutation.mutate({ content: "I have a question about constitutional law interpretation. Can anyone help explain the recent developments in Article 370 cases?", type: "question" })}
+            >
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-[var(--law-purple)] to-[var(--law-pink)] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-lg">
+                <HelpCircle className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-sm font-bold">🤔 Ask Community</span>
+            </Button>
+            <Button
+              variant="ghost"
+              className="flex flex-col items-center py-6 px-4 text-[var(--law-gray-light)] hover:text-white transition-all duration-300 rounded-2xl group bg-gradient-to-br from-orange-50 to-yellow-50 hover:from-[var(--law-orange)] hover:to-[var(--law-accent)] hover:scale-110 hover:shadow-xl"
+              onClick={() => createPostMutation.mutate({ content: "Case Analysis: Recent Supreme Court ruling on privacy rights. Key takeaways and implications for future litigation strategies.", type: "case_note" })}
+            >
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-[var(--law-orange)] to-[var(--law-accent)] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-lg">
+                <FileText className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-sm font-bold">📝 Case Study</span>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
